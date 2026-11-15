@@ -1,0 +1,26 @@
+# Token Zero lab -- INTENTIONALLY VULNERABLE. For local training only.
+#   docker compose up --build
+#
+# NOTE: written without Docker available; not run by its author.
+
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+      MARIADB_DATABASE: lab
+      MARIADB_USER: lab
+      MARIADB_PASSWORD: lab
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      retries: 20
+
+  app:
+    build: .
+    init: true
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"   # published on localhost only

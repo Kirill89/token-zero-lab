@@ -1,0 +1,14 @@
+{
+  "name": "token-zero-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Intentionally vulnerable teaching lab: JSON numbers in MySQL/MariaDB secret lookups. Do not deploy.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "mysql2": "3.24.6"
+  }
+}
